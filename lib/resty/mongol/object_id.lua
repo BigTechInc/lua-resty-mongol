@@ -55,7 +55,8 @@ machineid = ngx.md5_bin(machineid):sub(1, 3)
 
 local pid = num_to_le_uint(bit.band(ngx.var.pid, 0xFFFF), 2)
 
-local inc = 0
+-- start at random value
+local inc = math.random(1, 0xFFFFFF)
 local function generate_id ( )
     inc = inc + 1
     -- "A BSON ObjectID is a 12-byte value consisting of a 4-byte timestamp (seconds since epoch), a 3-byte machine id, a 2-byte process id, and a 3-byte counter. Note that the timestamp and counter fields must be stored big endian unlike the rest of BSON"
